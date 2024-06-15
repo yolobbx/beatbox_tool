@@ -1,21 +1,21 @@
 import os
 import subprocess
 
-# Set the path of input and output folders.
-INPUT_FOLDER = r'input'
-OUTPUT_FOLDER = r'output'
+# Set the path of video and audio folders.
+INPUT_FOLDER = r'video'
+OUTPUT_FOLDER = r'audio'
 
-# Ensure the output folder exists.
+# Ensure the audio folder exists.
 if not os.path.exists(OUTPUT_FOLDER):
     os.makedirs(OUTPUT_FOLDER)
 
-# Get a list of all files in the input folder.
+# Get a list of all files in the video folder.
 for filename in os.listdir(INPUT_FOLDER):
     if filename.endswith('.mp4'):  # Change this to match your file type.
         input_file_path = os.path.join(INPUT_FOLDER, filename)
         output_file_path = os.path.join(OUTPUT_FOLDER, os.path.splitext(filename)[0] + '.mp3')
 
-        # Set the command for processing the input video/audio.
+        # Set the command for processing the video video/audio.
         cmd = f'ffmpeg -i "{input_file_path}" -ab 320k -ac 2 -ar 48000 -vn "{output_file_path}"'
 
         # -ac 2 将音频转为 立体声 -ac 1 将音频转为 单声道
